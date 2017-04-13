@@ -1,28 +1,34 @@
 import React from 'react';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentEvent: '---'
+    };
+    this.update = this.update.bind(this);
+  }
+  update(e) {
+    this.setState({
+      currentEvent: e.type
+    })
+  }
   render() {
     return (
-      <Button> <Heart />React </Button>
+      <div>
+        <textarea
+          onKeyPress={this.update}
+          onCopy={this.update}
+          onPaste={this.update}
+          onFocus={this.update}
+          onBlur={this.update}
+          onDoubleClick={this.update}
+          onTouchMove={this.update}
+          ></textarea>
+          <h1>{this.state.currentEvent}</h1>
+      </div>
     )
   }
-}
-
-class Heart extends React.Component {
-  render() {
-    return <span>&hearts;</span>
-  }
-}
-const Button = (props) =>
-  <button>{props.children}</button>
-
-App.propTypes = {
-  txt: React.PropTypes.string,
-  cat: React.PropTypes.number.isRequired
-}
-
-App.defaultProps = {
-  txt: "this is the default txt"
 }
 
 export default App;
